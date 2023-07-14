@@ -1,0 +1,17 @@
+export const expenseCategories = [
+  'Rent',
+  'Food',
+  'Bills',
+  'Utilities',
+  'Transportation',
+  'Insurance',
+  'Shopping',
+  'Entertainment',
+  'Health Care',
+  'Housing',
+  'Tax',
+  'Clothing',
+  'Education',
+  'Miscellaneous',
+  'Other',
+];

@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+    id String @id @default(uuid())
+    name String
+    googleId Int @unique
+    avatarUrl String
+    transactions Transaction[]
+}
+
+model Transaction {
+    id String @id @default(uuid())
+    amount Float
+    type String
+    category String
+    paymentMethod String
+    date DateTime
+    description String @db.VarChar(50)
+
+    user User @relation(fields: [userId], references: [id])
+    userId String
+
+    // category Category @relation(fields: [categoryId], references: [id])
+    // categoryId String
+    
+    // paymentMode PaymentMode @relation(fields: [paymentModeId], references: [id])
+    // paymentModeId String
+}
+
+// model Category {
+//   id String @id @default(uuid())
+//   name String @db.VarChar(20)
+//   transactions Transaction[]
+// }
+
+// model PaymentMode {
+//   id String @id @default(uuid())
+//   name String @db.VarChar(10)
+//   transactions Transaction[]
+// }
