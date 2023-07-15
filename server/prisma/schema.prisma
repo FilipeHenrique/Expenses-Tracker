@@ -9,8 +9,8 @@ datasource db {
 
 model User {
     id String @id @default(uuid())
-    name String
-    googleId Int @unique
+    name String @db.VarChar(63)
+    email String @db.VarChar(127)
     avatarUrl String
     transactions Transaction[]
 }
@@ -21,27 +21,9 @@ model Transaction {
     type String
     category String
     paymentMethod String
-    date DateTime
+    date String
     description String @db.VarChar(50)
 
     user User @relation(fields: [userId], references: [id])
     userId String
-
-    // category Category @relation(fields: [categoryId], references: [id])
-    // categoryId String
-    
-    // paymentMode PaymentMode @relation(fields: [paymentModeId], references: [id])
-    // paymentModeId String
 }
-
-// model Category {
-//   id String @id @default(uuid())
-//   name String @db.VarChar(20)
-//   transactions Transaction[]
-// }
-
-// model PaymentMode {
-//   id String @id @default(uuid())
-//   name String @db.VarChar(10)
-//   transactions Transaction[]
-// }
