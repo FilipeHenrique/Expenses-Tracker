@@ -13,7 +13,13 @@ export class TransactionService {
   }
 
   async list() {
-    return await this.prismaService.transaction.findMany();
+    return await this.prismaService.transaction.findMany({
+      orderBy: [
+        {
+          date: 'desc',
+        },
+      ],
+    });
   }
 
   async show(id: string) {
