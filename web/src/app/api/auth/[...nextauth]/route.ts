@@ -1,5 +1,6 @@
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google";
+import api from "../../../../lib/axios";
 
 const handler = NextAuth({
   providers: [GoogleProvider({
@@ -8,16 +9,15 @@ const handler = NextAuth({
   })],
   session: { maxAge: 30 * 24 * 60 * 60 },
   callbacks: {
-    jwt: ({token, account})=> {
-      if (account?.access_token) {
-        token.access_token = account.access_token;
-      }
+    jwt: async ({token})=> {
       const user = {
         name: token.name,
         email: token.email,
         avatarUrl: token.picture
       }
-      // api register
+      await api.post("/auth/login", user).then((res) => {
+        token.access_token = res.data.access_token;
+      })
       return token;
     },
     async session({ session, token }: any) {
@@ -26,7 +26,7 @@ const handler = NextAuth({
     },
   },
   pages: {
-    signIn: '/'
+    signIn: '/',
   }
 })
 
