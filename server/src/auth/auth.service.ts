@@ -12,11 +12,11 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
   async login(data: CreateUserDTO) {
-    const user = await this.userService.show(data.email);
+    let user = await this.userService.show(data.email);
     if (!user) {
-      await this.userService.create(data);
+      user = await this.userService.create(data);
     }
-    const payload = { sub: data.email, username: data.name };
+    const payload = { sub: data.email, username: data.name, userId: user.id };
     return {
       access_token: await this.jwtService.signAsync(payload, {
         expiresIn: '7 days',
