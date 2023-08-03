@@ -55,7 +55,7 @@ const data = [
   },
 ];
 
-export default function ExpensesBarChart() {
+export default function BarChart() {
   return (
     <BarChart
       width={500}

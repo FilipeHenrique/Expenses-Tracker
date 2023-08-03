@@ -10,20 +10,17 @@ import dynamic from "next/dynamic";
 import TransactionCard from "./components/transaction-card";
 import DatePickerWithRange from "../../../components/date-range-picker";
 
-const ExpensesPieChart = dynamic(
-  () => import("./components/expenses-pie-chart"),
-  { ssr: false },
-);
+const PieChart = dynamic(() => import("./components/expenses-pie-chart"), {
+  ssr: false,
+});
 
-const ExpensesAreaChart = dynamic(
-  () => import("./components/expenses-area-chart"),
-  { ssr: false },
-);
+const AreaChart = dynamic(() => import("./components/expenses-area-chart"), {
+  ssr: false,
+});
 
-const ExpensesBarChart = dynamic(
-  () => import("./components/expenses-bar-chart"),
-  { ssr: false },
-);
+const BarChart = dynamic(() => import("./components/expenses-bar-chart"), {
+  ssr: false,
+});
 
 export default function Dashboard() {
   const data = {

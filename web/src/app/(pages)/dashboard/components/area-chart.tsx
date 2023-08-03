@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-export default function ExpensesAreaChart() {
+export default function AreaChart() {
   const data = [
     {
       name: "Page A",

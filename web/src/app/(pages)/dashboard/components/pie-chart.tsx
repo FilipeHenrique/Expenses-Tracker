@@ -3,7 +3,7 @@ import { PieChart, Pie, Cell } from "recharts";
 import colors from "../colors";
 import PieChartLegend from "./piechart-legend";
 
-export default function ExpensesPieChart() {
+export default function PieChart() {
   const data = [
     {
       category: "Miscellaneous",
