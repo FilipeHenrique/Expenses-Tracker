@@ -10,7 +10,17 @@ import dynamic from "next/dynamic";
 import TransactionCard from "./components/transaction-card";
 
 const ExpensesPieChart = dynamic(
-  () => import("./components/expenses-piechart"),
+  () => import("./components/expenses-pie-chart"),
+  { ssr: false },
+);
+
+const ExpensesAreaChart = dynamic(
+  () => import("./components/expenses-area-chart"),
+  { ssr: false },
+);
+
+const ExpensesBarChart = dynamic(
+  () => import("./components/expenses-bar-chart"),
   { ssr: false },
 );
 
@@ -116,34 +126,36 @@ export default function Dashboard() {
       <div className="mt-10 grid grid-cols-7 gap-4">
         <Card className="col-span-4 px-6 py-2">
           <CardHeader className="flex-column flex">
-            <CardTitle>Total Expenses</CardTitle>
-            <CardDescription>Jun 1 - Nov 30</CardDescription>
+            <CardTitle>Account - Balance</CardTitle>
           </CardHeader>
-          <ExpensesPieChart />
-        </Card>
-        <Card className="col-span-3">
-          <CardHeader>
-            <CardTitle>Recent Transactions</CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-6">
-            {data.transactions.slice(0, 5).map((transaction, index) => {
-              return <TransactionCard key={index} />;
-            })}
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="mt-10 grid grid-cols-7 gap-4">
-        <Card className="col-span-4 px-6 py-2">
-          <CardHeader className="flex-column flex">
-            <CardTitle>Account - Balanço</CardTitle>
-          </CardHeader>
+          <ExpensesAreaChart />
         </Card>
         <Card className="col-span-3">
           <CardHeader>
             <CardTitle>Income / Expense</CardTitle>
           </CardHeader>
-          <CardContent className="flex flex-col gap-6"></CardContent>
+          <ExpensesBarChart />
+        </Card>
+      </div>
+
+      <div className="mt-10 grid grid-cols-7 gap-4">
+        <Card className="col-span-5 px-6 py-2">
+          <CardHeader className="flex-column flex">
+            <CardTitle>Total Expenses</CardTitle>
+            <CardDescription>Jun 1 - Nov 30</CardDescription>
+          </CardHeader>
+          <ExpensesPieChart />
+        </Card>
+
+        <Card className="col-span-2">
+          <CardHeader>
+            <CardTitle>Recent Transactions</CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-6">
+            {data.transactions.slice(0, 5).map((_, index) => {
+              return <TransactionCard key={index} />;
+            })}
+          </CardContent>
         </Card>
       </div>
     </div>
