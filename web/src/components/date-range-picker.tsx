@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { addDays, format } from "date-fns";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
 import { DateRange } from "react-day-picker";
 
 import { cn } from "@/lib/utils";
@@ -18,7 +19,8 @@ export default function DatePickerWithRange({
   className,
 }: React.HTMLAttributes<HTMLDivElement>) {
   const [date, setDate] = React.useState<DateRange | undefined>(undefined);
-
+  const today = new Date();
+  const pastMonth = new Date(new Date().setMonth(new Date().getMonth() - 1));
   return (
     <div className={cn("grid gap-2", className)}>
       <Popover>
@@ -42,7 +44,7 @@ export default function DatePickerWithRange({
                 format(date.from, "LLL dd, y")
               )
             ) : (
-              <span>Pick a date</span>
+              <span>Selecionar Período</span>
             )}
           </Button>
         </PopoverTrigger>
@@ -53,6 +55,12 @@ export default function DatePickerWithRange({
             selected={date}
             onSelect={setDate}
             numberOfMonths={2}
+            disabled={(date) =>
+              date > new Date() || date < new Date("1900-01-01")
+            }
+            locale={ptBR}
+            toMonth={today}
+            defaultMonth={pastMonth}
           />
         </PopoverContent>
       </Popover>
