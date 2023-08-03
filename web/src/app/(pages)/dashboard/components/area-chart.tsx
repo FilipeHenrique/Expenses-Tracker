@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-export default function AreaChart() {
+export default function DashboardAreaChart() {
   const data = [
     {
       name: "Page A",

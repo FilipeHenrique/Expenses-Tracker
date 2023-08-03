@@ -55,7 +55,7 @@ const data = [
   },
 ];
 
-export default function BarChart() {
+export default function DashboardBarChart() {
   return (
     <BarChart
       width={500}

@@ -10,15 +10,15 @@ import dynamic from "next/dynamic";
 import TransactionCard from "./components/transaction-card";
 import DatePickerWithRange from "../../../components/date-range-picker";
 
-const PieChart = dynamic(() => import("./components/expenses-pie-chart"), {
+const DashboardPieChart = dynamic(() => import("./components/pie-chart"), {
   ssr: false,
 });
 
-const AreaChart = dynamic(() => import("./components/expenses-area-chart"), {
+const DashboardAreaChart = dynamic(() => import("./components/area-chart"), {
   ssr: false,
 });
 
-const BarChart = dynamic(() => import("./components/expenses-bar-chart"), {
+const DashboardBarChart = dynamic(() => import("./components/bar-chart"), {
   ssr: false,
 });
 
@@ -127,13 +127,13 @@ export default function Dashboard() {
           <CardHeader className="flex-column flex">
             <CardTitle>Account - Balance</CardTitle>
           </CardHeader>
-          <ExpensesAreaChart />
+          <DashboardAreaChart />
         </Card>
         <Card className="col-span-3">
           <CardHeader>
             <CardTitle>Income / Expense</CardTitle>
           </CardHeader>
-          <ExpensesBarChart />
+          <DashboardBarChart />
         </Card>
       </div>
 
@@ -143,7 +143,7 @@ export default function Dashboard() {
             <CardTitle>Total Expenses</CardTitle>
             <CardDescription>Jun 1 - Nov 30</CardDescription>
           </CardHeader>
-          <ExpensesPieChart />
+          <DashboardPieChart />
         </Card>
 
         <Card className="col-span-2">
