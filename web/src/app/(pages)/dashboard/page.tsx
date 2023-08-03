@@ -8,6 +8,7 @@ import {
 import { ArrowDownUp, DollarSign, PiggyBank, Wallet } from "lucide-react";
 import dynamic from "next/dynamic";
 import TransactionCard from "./components/transaction-card";
+import DatePickerWithRange from "../../../components/date-range-picker";
 
 const ExpensesPieChart = dynamic(
   () => import("./components/expenses-pie-chart"),
@@ -84,6 +85,7 @@ export default function Dashboard() {
 
   return (
     <div className="mt-4 flex flex-col px-52 py-10">
+      <DatePickerWithRange className="mb-4 self-end" />
       <div className="grid w-full grid-cols-12 gap-6 self-start">
         <Card className="col-span-3">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
